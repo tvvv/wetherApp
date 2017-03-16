@@ -1,7 +1,48 @@
 body{
-  background-color: #00ccff;
+  background-color: #00b0ff;
 }
 
 .name {
   text-align: center;
+}
+
+.Header {
+  font-family: 'Dosis', sans-serif;
+  color: white;
+}
+
+.search {
+  display: block;
+  text-align: center;
+}
+
+input {
+  margin-top: 75px;
+  font-family: 'Dosis', sans-serif;
+  color: white;
+  background-color: #3abcf6;
+  border: 2px;
+  border-color: #078cc8;
+  font-size: 18px;
+  text-align: center;
+  width: 300px;
+  height: 35px;
+}
+
+input::-webkit-input-placeholder {text-indent: 0px; transition:  1.5s ease; color: white;}
+:focus::-webkit-input-placeholder{transition:  1s; color: #3abcf6;}
+
+.search_button{
+  margin-top: 77px;
+  background-color: #00b0ff;
+  margin-right: 0px;
+  border: 0px;
+  width: 35px;
+  height: 35px;
+}
+
+.search_icon {
+  margin: -7.5px;
+  width: 32px;
+  height: 32px;
 }
