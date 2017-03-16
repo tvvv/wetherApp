@@ -5,6 +5,7 @@
     <meta name="Weather" content="Simple weather application where you can see what weather is in your city" charset="utf-8">
     <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./css/style.css"/>
+    <script type="text/javascript" src="./js/xml_request.js"></script>
   </head>
   <body>
     <div class="name">
@@ -14,7 +15,11 @@
 
     <div class="search">
       <input type="text" name="city" placeholder="Enter name of your city"/>
-      <button class="search_button" type="button" name="Search"><img class="search_icon" src="./img/favicon.ico" alt="search"/></button>
+      <button class="search_button" onclick="request()" type="button" name="Search"><img class="search_icon" src="./img/favicon.ico" alt="search"/></button>
+    </div>
+
+    <div id="result">
+      <p id="error"></p>
     </div>
   </body>
 </html>

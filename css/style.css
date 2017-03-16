@@ -46,3 +46,11 @@ input::-webkit-input-placeholder {text-indent: 0px; transition:  1.5s ease; colo
   width: 32px;
   height: 32px;
 }
+
+#error{
+  font-family: 'Dosis', sans-serif;
+  text-align: center;
+  color: red;
+  font-size: 38px;
+  margin-top: 50px;
+}
