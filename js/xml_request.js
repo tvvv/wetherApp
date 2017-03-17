@@ -1,20 +1,20 @@
 "use strict";
 
 
-function request() {
-
-  var city = document.getElementsByName("city").value;
-  if (city == "") {
-    document.getElementById("error").innerHTML = "Please enter city name";
+function search() {
+  var city_name = document.querySelector("div.search input[name=city]").value;
+  if (city_name === "") {
+    document.getElementById("result_city").innerHTML = "Please enter city name";
+    set_style("#result_city {color: red;}");
   } else {
-    var xhr = new XMLHttpRequest();
-    xhr.open('GET','https://openweathermap.org.arg/',false);
-
-    xhr.send();
-
-    if (xhr.status != 200) {
-      document.getElementById('error').innerHTML = xhr.status;
-    }
-    document.getElementById("error").innerHTML = "Error 404";
+    document.getElementById("result_city").innerHTML = "Weather in city " + city_name;
+    set_style("#result_city {color: white;}");
   }
+};
+
+function set_style(style) {
+  var x = document.createElement("STYLE");
+  var t = document.createTextNode(style);
+  x.appendChild(t);
+  document.head.appendChild(x);
 };
