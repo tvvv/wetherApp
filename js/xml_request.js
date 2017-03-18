@@ -26,8 +26,15 @@ function request() {
   xml.open("GET", apiUrl, false);
   xml.send();
   if (xml.status != 200) {
-    alert(xml.status + ': ' + xml.statusText);
+    document.getElementById("result_city").innerHTML = "Somethung goin wrong plese try again in few minutes";
+    set_style("#result_city {color: red; margin-top: 38px; transition: 1s;} input{ margin-top: 75px; transition: 1s;} .search_button { margin-top: 77px; transition: 1s;}");
   } else {
-    alert(xml.responseText);
+    var weather_obj = JSON.parse(xml.responseText);
+    document.getElementById("firstDayDate").innerHTML = weather_obj.list[0].dt_txt.substring(0, weather_obj.list[1].dt_txt.length - 9) ;
+    document.getElementById("Ftime").innerHTML = weather_obj.list[0].dt_txt.substring(11, weather_obj.list[1].dt_txt.length);
+    document.getElementById("FTmin").innerHTML = weather_obj.list[0].main.temp_min - 270;
+    document.getElementById("FTmax").innerHTML = weather_obj.list[0].main.temp_max - 270;
+    document.getElementById("Currrent_state").innerHTML = weather_obj.list[0].weather[0].main;
+    document.getElementById("description").innerHTML = weather_obj.list[0].weather[0].description;
   }
 }
