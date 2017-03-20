@@ -26,15 +26,56 @@ function request() {
   xml.open("GET", apiUrl, false);
   xml.send();
   if (xml.status != 200) {
-    document.getElementById("result_city").innerHTML = "Somethung goin wrong plese try again in few minutes";
+    document.getElementById("result_city").innerHTML = "Something goin wrong plese try again in few minutes";
     set_style("#result_city {color: red; margin-top: 38px; transition: 1s;} input{ margin-top: 75px; transition: 1s;} .search_button { margin-top: 77px; transition: 1s;}");
   } else {
     var weather_obj = JSON.parse(xml.responseText);
-    document.getElementById("firstDayDate").innerHTML = weather_obj.list[0].dt_txt.substring(0, weather_obj.list[1].dt_txt.length - 9) ;
-    document.getElementById("Ftime").innerHTML = weather_obj.list[0].dt_txt.substring(11, weather_obj.list[1].dt_txt.length);
-    document.getElementById("FTmin").innerHTML = weather_obj.list[0].main.temp_min - 270;
-    document.getElementById("FTmax").innerHTML = weather_obj.list[0].main.temp_max - 270;
-    document.getElementById("Currrent_state").innerHTML = weather_obj.list[0].weather[0].main;
-    document.getElementById("description").innerHTML = weather_obj.list[0].weather[0].description;
+
+    var body = document.getElementsByTagName("body")[0];
+    var result_table = document.createElement("table");
+    var tblBody = document.createElement("tbody");
+    result_table.setAttribute("id", "tableStyle");
+    var jsonElement = 0;
+    for (var i = 0; i < 17; i++) {
+      var row = document.createElement("tr");
+
+      for (var j = 0; j < 6; j++) {
+        var cell = document.createElement("td");
+        var cell_text;
+        if (i === 0) {
+          cell.setAttribute("id", "heder");
+        } else {
+          cell.setAttribute("id", "cellStyle");
+        }
+        if ( i === 0) {
+          cell_text = document.createTextNode(weather_obj.list[jsonElement].dt_txt.substring(0, weather_obj.list[jsonElement].dt_txt.length - 9)) ;
+        } else if ( i !== 0 && i % 2 === 1) {
+          cell_text = document.createTextNode(weather_obj.list[jsonElement].dt_txt.substring(11, weather_obj.list[jsonElement].dt_txt.length) + "\r\n" +
+                      "Temperature " + Math.floor(weather_obj.list[jsonElement].main.temp_min - 270) + " °C" + "\r\n" +
+                      weather_obj.list[jsonElement].weather[0].description);
+        } else {
+          cell_text = document.createElement("img");
+          cell_text.setAttribute("src", "http://openweathermap.org/img/w/" + weather_obj.list[i].weather[0].icon + ".png");
+        }
+        cell.appendChild(cell_text);
+        row.appendChild(cell);
+        jsonElement++;
+      }
+      tblBody.appendChild(row);
+    }
+    result_table.appendChild(tblBody);
+    body.appendChild(result_table);
+
+
+    // document.getElementById("1 DayDate").innerHTML = weather_obj.list[0].dt_txt.substring(0, weather_obj.list[0].dt_txt.length - 9) ;
+    // document.getElementById("1 record").innerHTML = weather_obj.list[0].dt_txt.substring(11, weather_obj.list[0].dt_txt.length) + "\r\n" +
+    //                                                   "Temperature " + Math.floor(weather_obj.list[0].main.temp_min - 270) + " °C" + "\r\n" +
+    //                                                   weather_obj.list[0].weather[0].description;
+    // var img_link = "http://openweathermap.org/img/w/" + weather_obj.list[0].weather[0].icon + ".png";
+    // document.getElementById("1 image").src = "http://openweathermap.org/img/w/" + weather_obj.list[0].weather[0].icon + ".png";
+    //
+    // if (weather_obj.list[0].dt_txt.substring(0, weather_obj.list[0].dt_txt.length - 9) === weather_obj.list[1].dt_txt.substring(0, weather_obj.list[1].dt_txt.length - 9)) {
+    //
+    // }
   }
 }

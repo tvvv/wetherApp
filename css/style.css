@@ -53,3 +53,18 @@ input:focus::-webkit-input-placeholder{transition:  1s; color: #3abcf6;}
   color: red;
   font-size: 38px;
 }
+
+#tableStyle {
+  font-family: 'Dosis', sans-serif;
+  text-align: center;
+  color: white;
+  margin: 0 auto;
+}
+
+#heder {
+  font-size: 20px;
+}
+
+#cellStyle {
+  font-size: 16px;
+}
