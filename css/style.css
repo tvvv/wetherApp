@@ -54,17 +54,34 @@ input:focus::-webkit-input-placeholder{transition:  1s; color: #3abcf6;}
   font-size: 38px;
 }
 
-#tableStyle {
+#resultTable{
+  display: block;
+  overflow-y: auto;
+  overflow-x: auto;
   font-family: 'Dosis', sans-serif;
   text-align: center;
   color: white;
-  margin: 0 auto;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -khtml-border-radius: 10px;
+  border: 2px solid white;
 }
 
-#heder {
-  font-size: 20px;
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 
 #cellStyle {
-  font-size: 16px;
+  font-size: 24px;
 }
