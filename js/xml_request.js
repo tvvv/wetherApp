@@ -1,6 +1,5 @@
 "use strict";
 
-
 function search() {
   var city_name = document.querySelector("div.search input[name=city]").value;
   if (city_name === "") {
@@ -11,6 +10,8 @@ function search() {
   } else {
     document.getElementById("result_city").innerHTML = "Weather in city " + city_name;
     set_style("#result_city {color: white;margin-top: 5px; transition: 1s;} input{ margin-top: 5px;} .search_button { margin-top: 7px;}");
+    var tbl = document.getElementById("resultTable");
+    if(tbl) tbl.parentNode.removeChild(tbl);
     request();
   }
 };
