@@ -12,14 +12,14 @@ function search() {
     deleteTable();
     request();
   }
-};
+}
 
 function set_style(style) {
   var x = document.createElement("STYLE");
   var t = document.createTextNode(style);
   x.appendChild(t);
   document.head.appendChild(x);
-};
+}
 
 function request() {
   try {
