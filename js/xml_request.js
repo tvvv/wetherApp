@@ -5,13 +5,11 @@ function search() {
   if (city_name === "") {
     document.getElementById("result_city").innerHTML = "Please enter city name";
     set_style("#result_city {color: red; margin-top: 38px; transition: 1s;} input{ margin-top: 75px; transition: 1s;} .search_button { margin-top: 77px; transition: 1s;}");
-    var tbl = document.getElementById("resultTable");
-    if(tbl) tbl.parentNode.removeChild(tbl);
+    deleteTable();
   } else {
     document.getElementById("result_city").innerHTML = "Weather in city " + city_name;
     set_style("#result_city {color: white;margin-top: 5px; transition: 1s;} input{ margin-top: 5px;} .search_button { margin-top: 7px;}");
-    var tbl = document.getElementById("resultTable");
-    if(tbl) tbl.parentNode.removeChild(tbl);
+    deleteTable();
     request();
   }
 };
@@ -24,26 +22,30 @@ function set_style(style) {
 };
 
 function request() {
-  var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?q=London&appid=cb64092b9a1a76433cad8b70805f1d41";
-  var xml = new XMLHttpRequest();
-  xml.open("GET", apiUrl, false);
-  xml.send();
-  if (xml.status != 200) {
-    document.getElementById("result_city").innerHTML = "Something goin wrong plese try again in few minutes";
+  try {
+    var city_name = document.querySelector("div.search input[name=city]").value;
+    var apiUrl = "http://api.openweathermap.org/data/2.5/forecast?appid=cb64092b9a1a76433cad8b70805f1d41&q=" + city_name.toString();
+    var xml = new XMLHttpRequest();
+    xml.open("GET", apiUrl, false);
+    xml.send();
+    if (xml.status != 200) {
+      document.getElementById("result_city").innerHTML = "Can't get data. Please check entered city name";
+      set_style("#result_city {color: red; margin-top: 38px; transition: 1s;} input{ margin-top: 75px; transition: 1s;} .search_button { margin-top: 77px; transition: 1s;}");
+    } else {
+      var weather_obj = JSON.parse(xml.responseText);
+      var result_array = [[],[],[],[]];
+      for (var i = 0; i < weather_obj.list.length; i++) {
+        result_array[0][i] = weather_obj.list[i].dt_txt.substring(0, weather_obj.list[i].dt_txt.length - 9) + "  " + weather_obj.list[i].dt_txt.substring(11, weather_obj.list[i].dt_txt.length);
+        result_array[1][i] = "Temperature " + Math.floor(weather_obj.list[i].main.temp_min - 270) + " °C";
+        result_array[2][i] = weather_obj.list[i].weather[0].description;
+        result_array[3][i] = "http://openweathermap.org/img/w/" + weather_obj.list[i].weather[0].icon + ".png";
+      }
+      createTable(result_array);
+    }
+  } catch (e) {
+    document.getElementById("result_city").innerHTML = "Can't get data. Please check entered city name and your intenet connection";
     set_style("#result_city {color: red; margin-top: 38px; transition: 1s;} input{ margin-top: 75px; transition: 1s;} .search_button { margin-top: 77px; transition: 1s;}");
-  } else {
-    var weather_obj = JSON.parse(xml.responseText);
-
-  var result_array = [[],[],[],[]];
-  for (var i = 0; i < weather_obj.list.length; i++) {
-    result_array[0][i] = weather_obj.list[i].dt_txt.substring(0, weather_obj.list[i].dt_txt.length - 9) + "  " + weather_obj.list[i].dt_txt.substring(11, weather_obj.list[i].dt_txt.length);
-    result_array[1][i] = "Temperature " + Math.floor(weather_obj.list[i].main.temp_min - 270) + " °C";
-    result_array[2][i] = weather_obj.list[i].weather[0].description;
-    result_array[3][i] = "http://openweathermap.org/img/w/" + weather_obj.list[i].weather[0].icon + ".png";
-  }
-
-  createTable(result_array);
-
+    deleteTable();
   }
 }
 
@@ -80,3 +82,15 @@ function createTable(tableData) {
   table.appendChild(tableBody);
   document.body.appendChild(table);
 }
+
+function deleteTable() {
+  var tbl = document.getElementById("resultTable");
+  if(tbl) tbl.parentNode.removeChild(tbl);
+}
+
+
+document.getElementById("search_field").onkeydown = function(e){
+    if (e.keyCode  == 13) {
+        document.getElementsByClassName("search_button").click();
+    }
+};
