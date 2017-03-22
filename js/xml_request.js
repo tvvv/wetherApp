@@ -88,9 +88,9 @@ function deleteTable() {
   if(tbl) tbl.parentNode.removeChild(tbl);
 }
 
-
-document.getElementById("search_field").onkeydown = function(e){
-    if (e.keyCode  == 13) {
-        document.getElementsByClassName("search_button").click();
+function runScript(e) {
+    if (e.keyCode === 13) {
+        search();
+        return false;
     }
-};
+}

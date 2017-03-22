@@ -15,7 +15,7 @@
     </div>
 
     <div class="search">
-      <input id="search_field" type="text" name="city" placeholder="Enter name of your city"/><button class="search_button" onclick="search()" type="button" name="Search"><img class="search_icon" src="./img/favicon.ico" alt="search"/></button>
+      <input id="search_field" type="text" onkeypress="return runScript(event)" name="city" placeholder="Enter name of your city"/><button class="search_button" onclick="search()" type="button" name="Search"><img class="search_icon" src="./img/favicon.ico" alt="search"/></button>
     </div>
 
     <div id="result">
