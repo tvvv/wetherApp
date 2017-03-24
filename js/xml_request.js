@@ -4,11 +4,11 @@ function search() {
   var city_name = document.querySelector("div.search input[name=city]").value;
   if (city_name === "") {
     document.getElementById("result_city").innerHTML = "Please enter city name";
-    set_style("#result_city {color: red; margin-top: 38px; transition: 1s;} input{ margin-top: 75px; transition: 1s;} .search_button { margin-top: 77px; transition: 1s;}");
+    set_style("#result_city {color: red; margin-top: 38px; transition: 1s;} #search_field{ margin-top: 75px; transition: 1s;} .search_button { margin-top: 77px; transition: 1s;}");
     deleteTable();
   } else {
     document.getElementById("result_city").innerHTML = "Weather in city " + city_name;
-    set_style("#result_city {color: white;margin-top: 5px; transition: 1s;} input{ margin-top: 5px;} .search_button { margin-top: 7px;}");
+    set_style("#result_city {color: white;margin-top: 5px; transition: 1s;} #search_field{ margin-top: 5px;} .search_button { margin-top: 7px;}");
     deleteTable();
     request();
   }
@@ -30,7 +30,7 @@ function request() {
     xml.send();
     if (xml.status != 200) {
       document.getElementById("result_city").innerHTML = "Can't get data. Please check entered city name";
-      set_style("#result_city {color: red; margin-top: 38px; transition: 1s;} input{ margin-top: 75px; transition: 1s;} .search_button { margin-top: 77px; transition: 1s;}");
+      set_style("#result_city {color: red; margin-top: 38px; transition: 1s;} #search_field{ margin-top: 75px; transition: 1s;} .search_button { margin-top: 77px; transition: 1s;}");
     } else {
       var weather_obj = JSON.parse(xml.responseText);
       var result_array = [[],[],[],[]];
@@ -44,7 +44,7 @@ function request() {
     }
   } catch (e) {
     document.getElementById("result_city").innerHTML = "Can't get data. Please check entered city name and your intenet connection";
-    set_style("#result_city {color: red; margin-top: 38px; transition: 1s;} input{ margin-top: 75px; transition: 1s;} .search_button { margin-top: 77px; transition: 1s;}");
+    set_style("#result_city {color: red; margin-top: 38px; transition: 1s;} #search_field{ margin-top: 75px; transition: 1s;} .search_button { margin-top: 77px; transition: 1s;}");
     deleteTable();
   }
 }

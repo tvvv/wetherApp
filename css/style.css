@@ -1,14 +1,11 @@
 body{
   background-color: #00b0ff;
+  font-family: 'Dosis', sans-serif;
+  color: white;
 }
 
 .name {
   text-align: center;
-}
-
-.Header {
-  font-family: 'Dosis', sans-serif;
-  color: white;
 }
 
 .search {
@@ -16,10 +13,49 @@ body{
   text-align: center;
 }
 
-input {
+div.themes{
+  border: 2px solid white;
+  border-radius: 10px;
+  border-color: white;
+  margin-top: 5px;
+  margin-left: 5px;
+  position: fixed;
+  width: 300px;
+  height: 120px;
+  text-align: center;
+}
+
+h4{
+  font-size: 22px;
+}
+
+button{
+  border: 1px solid white;
+  border-radius: 4px;
+  display: inline-block;
+}
+
+.custom_buttons{
+  padding-bottom:  3px;
+  background-color: inherit;
+  font-family: inherit;
+  color: inherit;
+  font-size: 16px;
+  margin-left: 3px;
+  height: 24px;
+}
+
+#color_bg{
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 5px;
+  display: inline-block;
+}
+
+#search_field {
   margin-top: 75px;
-  font-family: 'Dosis', sans-serif;
-  color: white;
+  font-family: inherit;
+  color: inherit;
   background-color: #3abcf6;
   border: 2px;
   border-color: #078cc8;
@@ -29,8 +65,8 @@ input {
   height: 35px;
 }
 
-input::-webkit-input-placeholder {text-indent: 0px; transition:  1.5s ease; color: white;}
-input:focus::-webkit-input-placeholder{transition:  1s; color: #3abcf6;}
+#search_field::-webkit-input-placeholder {text-indent: 0px; transition:  1.5s ease; color: white;}
+#search_field:focus::-webkit-input-placeholder{transition:  1s; color: #3abcf6;}
 
 .search_button{
   margin-top: 77px;
@@ -48,7 +84,6 @@ input:focus::-webkit-input-placeholder{transition:  1s; color: #3abcf6;}
 }
 
 #result_city {
-  font-family: 'Dosis', sans-serif;
   text-align: center;
   color: red;
   font-size: 38px;
@@ -58,9 +93,7 @@ input:focus::-webkit-input-placeholder{transition:  1s; color: #3abcf6;}
   display: block;
   overflow-y: auto;
   overflow-x: auto;
-  font-family: 'Dosis', sans-serif;
   text-align: center;
-  color: white;
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;

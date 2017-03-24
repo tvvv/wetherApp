@@ -7,8 +7,19 @@
     <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="./css/style.css"/>
     <script type="text/javascript" src="./js/xml_request.js"></script>
+    <script type="text/javascript" src="./js/themes.js">
+
+    </script>
   </head>
   <body>
+
+  <div class="themes">
+    <h4>Chose background</h4>
+    <input type="color" class="chose color" id="color_bg">
+    <button type="button" name="set_color" class="custom_buttons" onclick="set_color_bg()">Set color</button>
+    <button type="button" name="custom_picture" class="custom_buttons" onclick="set_picture_bg()">Chose picture</button>
+  </div>
+
     <div class="name">
       <img src="./img/logo.png" alt="application logo">
       <h1 class="Header">Weather Application</h1>
